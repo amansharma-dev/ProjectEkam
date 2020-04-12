@@ -6,4 +6,13 @@
     <string name="district">District :</string>
     <string name="nextbutton">nextButton</string>
     <string name="backbutton">backButton</string>
+    <string name="mobile_no">Mobile No.</string>
+    <string name="full_name">Full Name</string>
+    <string name="send">Send</string>
+    <string name="full_name_is">Full Name :</string>
+    <string name="mobile_number_is">Mobile Number :</string>
+    <string name="feedback">Feedback</string>
+    <string name="comment">Comment</string>
+    <string name="last_feedback">Last Feedback :</string>
+    <string name="androidimage">androidImage</string>
 </resources>

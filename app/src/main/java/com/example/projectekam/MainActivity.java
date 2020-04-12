@@ -3,9 +3,12 @@ package com.example.projectekam;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -30,6 +33,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private ImageButton nextIB;
     private ImageButton backIB;
     private Pref pref;
+    private EditText fullName;
+    private EditText mobileNum;
+    private Button sendBtn;
+    public static final int REQUESTCODE = 369;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +53,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         nextIB.setOnClickListener(this);
         backIB.setOnClickListener(this);
         cardView.setCardBackgroundColor(getResources().getColor(R.color.colorCardColor));
+        fullName = findViewById(R.id.fullName_editText);
+        mobileNum = findViewById(R.id.mobileNum_editText);
+        sendBtn=findViewById(R.id.sendBtn_button);
+        sendBtn.setOnClickListener(this);
 
         pref = new Pref(MainActivity.this);
         currentIndex= pref.getState();
@@ -73,9 +84,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     updateIndianCities();
                 }
                 break;
+
             case R.id.next_imageButton:
                 currentIndex = (currentIndex + 1) % indianCitiesList.size();
                 updateIndianCities();
+                break;
+
+            case R.id.sendBtn_button:
+                Intent intent = new Intent(MainActivity.this,SecondActivity.class);
+                startActivityForResult(intent,REQUESTCODE);
                 break;
         }
     }
