@@ -14,7 +14,7 @@ import android.widget.Toast;
 
 public class SecondActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private TextView fullname;
+    private TextView fullName;
     private TextView mobileNumber;
     private CardView cardView;
     private EditText comment;
@@ -23,7 +23,7 @@ public class SecondActivity extends AppCompatActivity implements View.OnClickLis
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_second);
-        fullname=findViewById(R.id.fullName_textView);
+        fullName =findViewById(R.id.fullName_textView);
         mobileNumber=findViewById(R.id.mobileNum_textView);
         cardView=findViewById(R.id.user_cV_cardView);
         comment=findViewById(R.id.comment_editText);
@@ -33,7 +33,7 @@ public class SecondActivity extends AppCompatActivity implements View.OnClickLis
         cardView.setCardBackgroundColor(getResources().getColor(R.color.colorCardColor));
         Bundle bundle = getIntent().getExtras();
         if(bundle!=null){
-            fullname.setText(bundle.getString("FullName"));
+            fullName.setText(bundle.getString("FullName"));
             mobileNumber.setText(String.valueOf(bundle.getLong("MobNumber")));
             Log.d("SECONDACT", "onCreate: "+bundle.getString("FullName")+", "+bundle.getLong("MobNumber"));
         }else{
