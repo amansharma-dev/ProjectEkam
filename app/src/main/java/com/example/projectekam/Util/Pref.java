@@ -18,4 +18,12 @@ public class Pref {
     public int getState(){
         return sharedPreferences.getInt("currentIndex_value",0);
     }
+
+    public void saveFeedback(String comment){
+        sharedPreferences.edit().putString("save_feedback",comment).apply();
+    }
+
+    public String getFeedback(){
+        return sharedPreferences.getString("save_feedback","");
+    }
 }

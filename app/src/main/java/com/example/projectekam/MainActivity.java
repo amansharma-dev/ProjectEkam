@@ -1,5 +1,6 @@
 package com.example.projectekam;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
@@ -36,6 +37,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private EditText fullName;
     private EditText mobileNum;
     private Button sendBtn;
+    private TextView lastFeedback;
     public static final int REQUESTCODE = 369;
 
     @Override
@@ -57,9 +59,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mobileNum = findViewById(R.id.mobileNum_editText);
         sendBtn=findViewById(R.id.sendBtn_button);
         sendBtn.setOnClickListener(this);
+        lastFeedback=findViewById(R.id.lastFeedback_textView);
 
         pref = new Pref(MainActivity.this);
         currentIndex= pref.getState();
+        lastFeedback.setText(pref.getFeedback());
         indianCitiesList = new IndianCitiesApi().getIndianCities(new AsyncIndianCities() {
             @Override
             public void processFinished(ArrayList<IndianCities> indianCitiesArrayList) {
@@ -91,7 +95,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
 
             case R.id.sendBtn_button:
+                String fName = fullName.getText().toString().trim();
+                long mobNum = Long.parseLong((mobileNum.getText().toString()));
                 Intent intent = new Intent(MainActivity.this,SecondActivity.class);
+                intent.putExtra("FullName",fName);
+                intent.putExtra("MobNumber",mobNum);
                 startActivityForResult(intent,REQUESTCODE);
                 break;
         }
@@ -113,5 +121,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onPause() {
         pref.setState(currentIndex);
         super.onPause();
+    }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUESTCODE){
+            assert  data != null;
+            String comment = data.getStringExtra("comment");
+            lastFeedback.setText(comment);
+            pref.saveFeedback(comment);
+        }
     }
 }
