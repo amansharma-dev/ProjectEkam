@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">ProjectEkam</string>
+    <string name="indian_cities_api">Indian Cities Api</string>
+    <string name="city">City :</string>
+    <string name="state">State :</string>
+    <string name="district">District :</string>
+    <string name="nextbutton">nextButton</string>
+    <string name="backbutton">backButton</string>
 </resources>

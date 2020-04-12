@@ -4,15 +4,169 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorBackground"
     tools:context=".MainActivity">
 
+
     <TextView
+        android:id="@+id/indianCitiesTitle_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textSize="31sp"
+        android:text="@string/indian_cities_api"
+        android:textColor="@color/colorTextTitle_BtnText"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginTop="5dp"/>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cV_cardView"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        app:layout_constraintTop_toBottomOf="@id/indianCitiesTitle_textView"
+        android:layout_marginTop="15dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:cardCornerRadius="5dp"
+        app:cardElevation="2dp"
+        app:cardMaxElevation="3dp"
+        app:cardUseCompatPadding="true">
+        <LinearLayout
+            android:id="@+id/indianCitiesDetails_cardLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+
+        <LinearLayout
+
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:weightSum="3">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/city"
+                android:textColor="@color/colorText"
+                android:textStyle="bold"
+                android:textSize="24sp"
+                android:gravity="center"
+                android:layout_weight="1" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/state"
+                android:textColor="@color/colorText"
+                android:textStyle="bold"
+                android:textSize="24sp"
+                android:gravity="center"
+                android:layout_weight="1"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/district"
+                android:textColor="@color/colorText"
+                android:textStyle="bold"
+                android:textSize="24sp"
+                android:gravity="center"
+                android:layout_weight="1"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:weightSum="3"
+            android:layout_marginStart="10dp">
+
+            <TextView
+                android:id="@+id/cityName_textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textColor="@color/colorText"
+                android:textStyle="normal"
+                android:textSize="24sp"
+                android:gravity="center"
+                android:layout_weight="1" />
+
+            <TextView
+                android:id="@+id/stateName_textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textColor="@color/colorText"
+                android:textStyle="normal"
+                android:textSize="24sp"
+                android:gravity="center"
+                android:layout_weight="1"/>
+
+            <TextView
+                android:id="@+id/districtName_textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textColor="@color/colorText"
+                android:textStyle="normal"
+                android:textSize="24sp"
+                android:gravity="center"
+                android:layout_weight="1"/>
+        </LinearLayout>
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+
+    <ImageButton
+        android:id="@+id/back_imageButton"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:src="@drawable/back"
+        app:layout_constraintTop_toBottomOf="@id/cV_cardView"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginTop="15dp"
+        android:layout_marginStart="5dp"
+        android:background="@color/colorButtonColor"
+        android:contentDescription="@string/backbutton"/>
+
+    <TextView
+        android:id="@+id/sizeOfIndianCitiesArray_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textColor="@color/colorText"
+        android:textStyle="normal"
+        android:textSize="24sp"
+        app:layout_constraintTop_toBottomOf="@id/cV_cardView"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginTop="30dp"
+        />
+
+    <ImageButton
+        android:id="@+id/next_imageButton"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:src="@drawable/next"
+        app:layout_constraintTop_toBottomOf="@id/cV_cardView"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="5dp"
+        android:background="@color/colorButtonColor"
+        android:contentDescription="@string/nextbutton"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        app:layout_constraintTop_toBottomOf="@id/next_imageButton"
+        android:layout_marginTop="5dp"
+        android:background="@color/colorButtonColor"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
