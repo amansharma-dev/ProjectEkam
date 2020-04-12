@@ -13,6 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="31sp"
+        android:textStyle="bold"
         android:text="@string/indian_cities_api"
         android:textColor="@color/colorTextTitle_BtnText"
         app:layout_constraintTop_toTopOf="parent"
@@ -40,9 +41,7 @@
             android:layout_height="match_parent"
             android:orientation="horizontal">
 
-
         <LinearLayout
-
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:orientation="vertical"
