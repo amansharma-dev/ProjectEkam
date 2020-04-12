@@ -12,6 +12,7 @@ import com.example.projectekam.Data.IndianCities;
 
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -32,9 +33,11 @@ public class IndianCitiesApi {
                     public void onResponse(JSONArray response) {
                         Log.d("RESPONSE", "onResponse: "+response);
                         for(int i=0; i<response.length();i++){
-                            IndianCities indianCities = new IndianCities();
 
                             try {
+                                IndianCities indianCities = new IndianCities();
+
+
                                 indianCities.setCity(response.getJSONObject(i).getString("City"));
                                 indianCities.setState(response.getJSONObject(i).getString("State"));
                                 indianCities.setDistrict(response.getJSONObject(i).getString("District"));

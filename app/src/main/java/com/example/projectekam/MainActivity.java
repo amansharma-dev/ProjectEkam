@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.example.projectekam.Data.IndianCities;
 import com.example.projectekam.Model.AsyncIndianCities;
 import com.example.projectekam.Model.IndianCitiesApi;
+import com.example.projectekam.Util.Pref;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,10 +25,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private TextView city;
     private TextView state;
     private TextView district;
-
+    private TextView indianCitiesSize;
     private CardView cardView;
     private ImageButton nextIB;
     private ImageButton backIB;
+    private Pref pref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,12 +39,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         city=findViewById(R.id.cityName_textView);
         state=findViewById(R.id.stateName_textView);
         district=findViewById(R.id.districtName_textView);
+        indianCitiesSize=findViewById(R.id.sizeOfIndianCitiesArray_textView);
         cardView=findViewById(R.id.cV_cardView);
         nextIB=findViewById(R.id.next_imageButton);
         backIB=findViewById(R.id.back_imageButton);
         nextIB.setOnClickListener(this);
         backIB.setOnClickListener(this);
         cardView.setCardBackgroundColor(getResources().getColor(R.color.colorCardColor));
+
+        pref = new Pref(MainActivity.this);
+        currentIndex= pref.getState();
         indianCitiesList = new IndianCitiesApi().getIndianCities(new AsyncIndianCities() {
             @Override
             public void processFinished(ArrayList<IndianCities> indianCitiesArrayList) {
@@ -50,7 +56,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 city.setText(indianCitiesArrayList.get(currentIndex).getCity());
                 state.setText(indianCitiesArrayList.get(currentIndex).getState());
                 district.setText(indianCitiesArrayList.get(currentIndex).getDistrict());
-                Log.d("MAIN", "processFinished: "+indianCitiesArrayList.get(0).getDistrict());
+                indianCitiesSize.setText(currentIndex+" / "+indianCitiesArrayList.size());
+                pref.setState(currentIndex);
             }
         });
 
@@ -81,6 +88,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         city.setText(updateCity);
         state.setText(updateSate);
         district.setText(updateDistrict);
-    }
 
+        indianCitiesSize.setText(currentIndex+" / "+indianCitiesList.size());
+     }
+
+    @Override
+    protected void onPause() {
+        pref.setState(currentIndex);
+        super.onPause();
+    }
 }
