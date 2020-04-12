@@ -15,4 +15,7 @@
     <string name="comment">Comment</string>
     <string name="last_feedback">Last Feedback :</string>
     <string name="androidimage">androidImage</string>
+    <string name="night">Night</string>
+    <string name="day">Day</string>
+    <string name="text_switch">Switch</string>
 </resources>

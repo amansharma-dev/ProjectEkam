@@ -2,6 +2,7 @@ package com.example.projectekam;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.cardview.widget.CardView;
 
 import android.content.Intent;
@@ -9,9 +10,12 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.projectekam.Data.IndianCities;
 import com.example.projectekam.Model.AsyncIndianCities;
@@ -40,6 +44,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private TextView lastFeedback;
     public static final int REQUESTCODE = 369;
 
+    private Switch aSwitch;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,11 +60,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         nextIB.setOnClickListener(this);
         backIB.setOnClickListener(this);
         cardView.setCardBackgroundColor(getResources().getColor(R.color.colorCardColor));
+
         fullName = findViewById(R.id.fullName_editText);
         mobileNum = findViewById(R.id.mobileNum_editText);
         sendBtn=findViewById(R.id.sendBtn_button);
         sendBtn.setOnClickListener(this);
         lastFeedback=findViewById(R.id.lastFeedback_textView);
+
+        aSwitch=findViewById(R.id.changeColor_switch);
 
         pref = new Pref(MainActivity.this);
         currentIndex= pref.getState();
@@ -76,6 +84,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         });
 
+
+        aSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
+                if(isChecked){
+
+                    Toast.makeText(getApplicationContext(),"Chill, I don't work, but im still on!!",Toast.LENGTH_LONG).show();
+
+                }
+                else{
+                    Toast.makeText(getApplicationContext(),"Chill, I don't work, but im still off!!",Toast.LENGTH_LONG).show();
+
+                }
+            }
+        });
 
     }
 
@@ -102,6 +125,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 intent.putExtra("MobNumber",mobNum);
                 startActivityForResult(intent,REQUESTCODE);
                 break;
+
         }
     }
 
